@@ -7,45 +7,45 @@
     </head>
 <body>
     <div class="container">
-        <div class="well well-lg">
             <h1 class="text-center">Transpose matrix</h1>
-            <p>Give the matrix sive</p>
-            <form >
-                
-            </form>
-            <form id="inputField" role="form">
-                <input type="text" name="field00" size="3">
-                <input type="text" name="field01" size="3">
-                <input type="text" name="field02" size="3">
-                <input type="text" name="field03" size="3">
-                <br>
-                <input type="text" name="field10" size="3">
-                <input type="text" name="field11" size="3">
-                <input type="text" name="field12" size="3">
-                <input type="text" name="field13" size="3">
-                <br>
-                <input type="text" name="field20" size="3">
-                <input type="text" name="field21" size="3">
-                <input type="text" name="field22" size="3">
-                <input type="text" name="field23" size="3">
-                <br>
-                <input type="submit" onclick="calcJacobian()" value="calculate" name="calculate" class="btn btn-info">
-            </form>
-            <div id="resultField">
-                
+            <div class="row mb-5">
+                <div class="col-lg-8 offset-lg-4">
+                   <form action="{{ route('matrix') }}" method="POST">
+                        @csrf
+                        <fieldset>Give the matrix dimension</fieldset>
+                      <div class="form-row">
+                        <div class="col-lg-3">
+                          <input type="text" class="form-control" placeholder="put the x value" name="x">
+                        </div>
+                        <div class="col-lg-3">
+                          <input type="text" class="form-control" placeholder="put the Y value" name="y">
+                        </div>
+                        <div class="col-lg-2">
+                            <input type="submit" value="setup" class="btn btn-primary">
+                        </div>
+                      </div>
+                    </form>                    
+                </div>
             </div>
+            <div class="row mb-5">
+                <div class="col-lg-8 offset-lg-4">
+                    <br>
+                    <form id="inputField" role="form">
 
-        </div>
+                        @isset($x)
+                            @for ($a = 0; $a < $x; $a++)
+                                @for ($b = 0; $b < $y; $b++)
+                                   @include('partials.row',[
+                                        'x'=>$x,
+                                        'y'=>$y
+                                   ])
+                                @endfor
+                                @include('partials.line')
+                            @endfor                            
+                        @endisset                        
+                    </form>
+                </div>
+            </div>
     </div>
-    <script type="text/javascript">
-        function calcJacobian(){
-            var myArr = document.forms.inputField;
-            var myControls = myArr.elements['p_id'];
-            for(var i =0; i<myControls.length; i++){
-                var aControl = myControls[i];
-                document.getElementById("resultField").append=aControl;
-            }
-        }
-    </script>
 </body>
 </html>
