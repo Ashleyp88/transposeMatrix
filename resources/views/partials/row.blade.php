@@ -1,1 +1,1 @@
-<input type="text" name="tab[]" size="5">
+<input type="text" name="tab[{!!$x!!}][{!!$y!!}]" size="5" class="mb-1" >

@@ -13,6 +13,7 @@
 
 Route::group(['namespace'=> 'Operation'], function(){
 	Route::get('/', 'OperationController@index')->name('operation');
-	Route::post('/matrix', 'OperationController@createMatrix')->name('matrix');
+	Route::get('/matrix', 'OperationController@createMatrix')->name('matrix');
+	Route::get('/transpose', 'OperationController@transposeMatrix')->name('transpose');
 });
 
