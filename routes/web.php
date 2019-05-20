@@ -11,10 +11,15 @@
 |
 */
 
+//route of the app
 Route::group(['namespace'=> 'Operation'], function(){
+	//for gettin the index app
 	Route::get('/', 'OperationController@index')->name('operation');
+	//route to construct the matrix
 	Route::get('/matrix', 'OperationController@createMatrix')->name('matrix');
+	//route to transpose the matrix
 	Route::get('/transpose', 'OperationController@transposeMatrix')->name('transpose');
-	route::get('/result', 'OperationController@result')->name('result');
+	//route to get the final view
+	route::get('/result', 'OperationController@resultOperation')->name('result');
 });
 

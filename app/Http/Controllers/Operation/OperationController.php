@@ -62,6 +62,7 @@ class OperationController extends Controller
 
     }
 
+    //function return view to print final result
     public function resultOperation()
     {
         return view('result');
