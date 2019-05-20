@@ -15,5 +15,6 @@ Route::group(['namespace'=> 'Operation'], function(){
 	Route::get('/', 'OperationController@index')->name('operation');
 	Route::get('/matrix', 'OperationController@createMatrix')->name('matrix');
 	Route::get('/transpose', 'OperationController@transposeMatrix')->name('transpose');
+	route::get('/result', 'OperationController@result')->name('result');
 });
 

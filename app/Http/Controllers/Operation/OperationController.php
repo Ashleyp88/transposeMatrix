@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Operation;
 
+use \Session;
 use App\Http\Requests\OperationRequest;
 use App\Http\Requests\MatrixRequest;
 use App\Http\Controllers\Controller;
@@ -29,15 +30,25 @@ class OperationController extends Controller
 
     }
 
+    //transposeMatrix method 
+    //paramater MatrixRequest
     public function transposeMatrix(MatrixRequest $request)
     {
         $tab = ($request->get('tab'));
 
         $return = $this->transpose($tab);
 
-    	return view('transpose', compact('tab', 'return'))->with('ok', 'Congratillation result found');
+        session()->put('original', $tab);
+
+        session()->put('transpose', $return);
+
+    	return redirect()->route('result')->with('ok', 'Congratillation result found');
     }
 
+    /*
+    *   function doing the transpose 
+    *   @PARAM the table to transpose
+    */
     private function transpose($tab = [])
     {
 
@@ -49,6 +60,11 @@ class OperationController extends Controller
 
         }, array_map(null, ...array_values($tab)));
 
+    }
+
+    public function resultOperation()
+    {
+        return view('result');
     }
 
 }
